@@ -60,18 +60,18 @@
   
   #fetchNewsBtn {
     font-size: 1rem;
-    padding: 12px 40px; /* Increase horizontal padding for oblong effect */
+    padding: 12px 40px; 
     background-color: #5c21ff;
     color: #fff;
     border: none;
-    border-radius: 30px; /* Large radius for oblong shape */
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
   }
   
   #fetchNewsBtn:hover {
     background-color: #4c1fd1;
-    transform: scale(1.05); /* Slight scaling effect on hover */
+    transform: scale(1.05);
   }
   
   
@@ -89,7 +89,7 @@
   
   .news-item {
     background-color: #84b2e0;
-    padding: 15px;
+    padding: 16px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
