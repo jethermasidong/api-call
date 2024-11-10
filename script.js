@@ -7,19 +7,34 @@ let newsData = [];
 
 async function fetchNews() {
   const newsContainer = document.getElementById("newsContainer");
-
   const apiKey = "YkFe5UhXlAz9ZdSFZ3Jy28Q36tQ5-6fY5Dk1RoZYO2ziMkpW"; 
   const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}`;
 
+  // Timeout for fetch request (in milliseconds)
+  const timeout = 5000;
+
   try {
     if (newsData.length === 0) {
-      const response = await fetch(apiUrl);
-      console.log('API Request URL:', apiUrl); 
+      // Adding a timeout for the fetch request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+      const response = await fetch(apiUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error("News API endpoint not found (404).");
+        } else if (response.status === 503) {
+          throw new Error("Service is temporarily unavailable (503).");
+        } else {
+          throw new Error(`Unexpected error: ${response.status}`);
+        }
+      }
 
       const responseData = await response.json();
-      console.log('API data:', responseData); 
 
-      if (!response.ok || !responseData.news || responseData.news.length === 0) {
+      if (!responseData.news || responseData.news.length === 0) {
         throw new Error("No news articles found.");
       }
 
@@ -30,8 +45,13 @@ async function fetchNews() {
     displayArticle();
 
   } catch (error) {
-    console.error("Fetch error:", error);
-    newsContainer.innerHTML = `<p class='text-red-500'>An error occurred: ${error.message}</p>`;
+    if (error.name === 'AbortError') {
+      console.error("Fetch error: Request timed out.");
+      newsContainer.innerHTML = `<p class='text-red-500'>The request timed out. Please try again later.</p>`;
+    } else {
+      console.error("Fetch error:", error);
+      newsContainer.innerHTML = `<p class='text-red-500'>An error occurred: ${error.message}</p>`;
+    }
   }
 }
 
@@ -66,7 +86,6 @@ function displayArticle() {
   articleDiv.appendChild(description);
   articleDiv.appendChild(link);
 
- 
   newsContainer.innerHTML = ""; 
   newsContainer.appendChild(articleDiv);  
 }

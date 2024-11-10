@@ -1,54 +1,67 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(-45deg, #FAF6E3, #D8DBBD, #B59F78, #2A3663);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+body {
+  font-family: 'Arial', sans-serif;
+  background: url('https://i.pinimg.com/originals/82/f3/3c/82f33c83e658969547fbce1afda7c1b5.gif') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
 
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: 0;
+}
 
-  #app {
-    background-color: #e7e4e4;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 480px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #0056eb;
-    margin-bottom: 20px;
+  50% {
+    background-position: 100% 50%;
   }
-  
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#app {
+  background-color: #e7e4e4;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 20px;
+}
   button {
     font-size: 1rem;
     padding: 12px 20px;
@@ -73,8 +86,6 @@
     background-color: #4c1fd1;
     transform: scale(1.05);
   }
-  
-  
   
   button:hover {
     transform: translateY(-2px);
