@@ -1,5 +1,5 @@
 const buttonClickSound = new Audio('https://raw.githubusercontent.com/jethermasidong/api-call/main/soundeffect/papersoundeffect.mp3');
-
+buttonClickSound.playbackRate = 1.5;
 document.getElementById("fetchNewsBtn").addEventListener("click", fetchNews);
 document.getElementById("nextBtn").addEventListener("click", showNextArticle);
 document.getElementById("prevBtn").addEventListener("click", showPreviousArticle);
