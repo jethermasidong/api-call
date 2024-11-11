@@ -1,4 +1,4 @@
-const buttonClickSound = new Audio('https://raw.githubusercontent.com/your-jethermasidong/api-call/main/soundeffect/papersoundeffect.mp3');
+const buttonClickSound = new Audio('https://raw.githubusercontent.com/jethermasidong/api-call/main/soundeffect/papersoundeffect.mp3');
 
 document.getElementById("fetchNewsBtn").addEventListener("click", fetchNews);
 document.getElementById("nextBtn").addEventListener("click", showNextArticle);
