@@ -1,3 +1,6 @@
+const clickSound = new Audio('https://your-jethermasidong.github.io/api-call/soundeffect/papersoundeffect.mp3');
+const buttonClickSound = new Audio('https://your-username.jethermasidong.github.io/api-call/soundeffect/papersoundeffect.mp3');
+
 document.getElementById("fetchNewsBtn").addEventListener("click", fetchNews);
 document.getElementById("nextBtn").addEventListener("click", showNextArticle);
 document.getElementById("prevBtn").addEventListener("click", showPreviousArticle);
@@ -6,16 +9,15 @@ let currentIndex = 0;
 let newsData = []; 
 
 async function fetchNews() {
+  buttonClickSound.play();
+
   const newsContainer = document.getElementById("newsContainer");
   const apiKey = "YkFe5UhXlAz9ZdSFZ3Jy28Q36tQ5-6fY5Dk1RoZYO2ziMkpW"; 
   const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}`;
-
-  // Timeout for fetch request (in milliseconds)
   const timeout = 5000;
 
   try {
     if (newsData.length === 0) {
-      // Adding a timeout for the fetch request
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeout);
 
@@ -91,6 +93,8 @@ function displayArticle() {
 }
 
 function showNextArticle() {
+  buttonClickSound.play();
+
   if (currentIndex < newsData.length - 1) {
     currentIndex++;
   } else {
@@ -100,6 +104,8 @@ function showNextArticle() {
 }
 
 function showPreviousArticle() {
+  buttonClickSound.play();
+
   if (currentIndex > 0) {
     currentIndex--;
   } else {
