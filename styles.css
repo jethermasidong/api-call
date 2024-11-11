@@ -13,7 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 19px;
   position: relative;
   overflow: hidden;
 }
@@ -73,7 +73,7 @@ h1 {
   
   #fetchNewsBtn {
     font-size: 1rem;
-    padding: 12px 40px; 
+    padding: 13px 40px; 
     background-color: #5c21ff;
     color: #fff;
     border: none;
@@ -121,7 +121,7 @@ h1 {
     background-color: #5c21ff;
     color: #f3f3f3;
     padding: 12px 20px;
-    border-radius: 6px;
+    border-radius: 7px;
     border: none;
     cursor: pointer;
   }
