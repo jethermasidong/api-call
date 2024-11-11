@@ -13,7 +13,6 @@ document.getElementById("prevBtn").addEventListener("click", function() {
 });
 
 function playSoundWithLoading(callback) {
-  // Show the loading text
   document.getElementById("loading").style.display = "block";
   document.getElementById("newsContainer").style.display = "none"; // Hide news
 
@@ -22,11 +21,8 @@ function playSoundWithLoading(callback) {
   });
 
   buttonClickSound.onended = () => {
-    // Hide the loading text and show the news after the sound ends
     document.getElementById("loading").style.display = "none";
     document.getElementById("newsContainer").style.display = "block";
-    
-    // Call the callback to fetch or display the article
     callback();
   };
 }
