@@ -1,5 +1,4 @@
-const clickSound = new Audio('https://your-jethermasidong.github.io/api-call/soundeffect/papersoundeffect.mp3');
-const buttonClickSound = new Audio('https://your-username.jethermasidong.github.io/api-call/soundeffect/papersoundeffect.mp3');
+const buttonClickSound = new Audio('https://raw.githubusercontent.com/your-jethermasidong/api-call/main/soundeffect/papersoundeffect.mp3');
 
 document.getElementById("fetchNewsBtn").addEventListener("click", fetchNews);
 document.getElementById("nextBtn").addEventListener("click", showNextArticle);
@@ -9,14 +8,16 @@ let currentIndex = 0;
 let newsData = []; 
 
 async function fetchNews() {
-  buttonClickSound.play();
-
-  const newsContainer = document.getElementById("newsContainer");
-  const apiKey = "YkFe5UhXlAz9ZdSFZ3Jy28Q36tQ5-6fY5Dk1RoZYO2ziMkpW"; 
-  const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}`;
-  const timeout = 5000;
-
   try {
+    buttonClickSound.play().catch(error => {
+      console.error("Error playing sound:", error);
+    });
+
+    const newsContainer = document.getElementById("newsContainer");
+    const apiKey = "YkFe5UhXlAz9ZdSFZ3Jy28Q36tQ5-6fY5Dk1RoZYO2ziMkpW"; 
+    const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}`;
+    const timeout = 5000;
+
     if (newsData.length === 0) {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -45,8 +46,8 @@ async function fetchNews() {
     }
 
     displayArticle();
-
   } catch (error) {
+    const newsContainer = document.getElementById("newsContainer");
     if (error.name === 'AbortError') {
       console.error("Fetch error: Request timed out.");
       newsContainer.innerHTML = `<p class='text-red-500'>The request timed out. Please try again later.</p>`;
@@ -93,7 +94,9 @@ function displayArticle() {
 }
 
 function showNextArticle() {
-  buttonClickSound.play();
+  buttonClickSound.play().catch(error => {
+    console.error("Error playing sound:", error);
+  });
 
   if (currentIndex < newsData.length - 1) {
     currentIndex++;
@@ -104,7 +107,9 @@ function showNextArticle() {
 }
 
 function showPreviousArticle() {
-  buttonClickSound.play();
+  buttonClickSound.play().catch(error => {
+    console.error("Error playing sound:", error);
+  });
 
   if (currentIndex > 0) {
     currentIndex--;
