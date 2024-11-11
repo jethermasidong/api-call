@@ -1,18 +1,31 @@
-const buttonClickSound = new Audio('https://raw.githubusercontent.com/jethermasidong/api-call/main/soundeffect/papersoundeffect.mp3');
-buttonClickSound.playbackRate = 3;
-document.getElementById("fetchNewsBtn").addEventListener("click", fetchNews);
-document.getElementById("nextBtn").addEventListener("click", showNextArticle);
-document.getElementById("prevBtn").addEventListener("click", showPreviousArticle);
+const buttonClickSound = new Audio('https://raw.githubusercontent.com/jethermasidong/api-call/refs/heads/main/soundeffect/papersoundeffect.mp3');
 
-let currentIndex = 0; 
-let newsData = []; 
+document.getElementById("fetchNewsBtn").addEventListener("click", function() {
+  buttonClickSound.play().catch(error => {
+    console.error("Error playing sound:", error);
+  });
+  fetchNews();
+});
+
+document.getElementById("nextBtn").addEventListener("click", function() {
+  buttonClickSound.play().catch(error => {
+    console.error("Error playing sound:", error);
+  });
+  showNextArticle();
+});
+
+document.getElementById("prevBtn").addEventListener("click", function() {
+  buttonClickSound.play().catch(error => {
+    console.error("Error playing sound:", error);
+  });
+  showPreviousArticle();
+});
+
+let currentIndex = 0;
+let newsData = [];
 
 async function fetchNews() {
   try {
-    buttonClickSound.play().catch(error => {
-      console.error("Error playing sound:", error);
-    });
-
     const newsContainer = document.getElementById("newsContainer");
     const apiKey = "YkFe5UhXlAz9ZdSFZ3Jy28Q36tQ5-6fY5Dk1RoZYO2ziMkpW"; 
     const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}`;
@@ -41,8 +54,8 @@ async function fetchNews() {
         throw new Error("No news articles found.");
       }
 
-      newsData = responseData.news;  
-      currentIndex = 0; 
+      newsData = responseData.news;
+      currentIndex = 0;
     }
 
     displayArticle();
@@ -89,15 +102,11 @@ function displayArticle() {
   articleDiv.appendChild(description);
   articleDiv.appendChild(link);
 
-  newsContainer.innerHTML = ""; 
-  newsContainer.appendChild(articleDiv);  
+  newsContainer.innerHTML = "";
+  newsContainer.appendChild(articleDiv);
 }
 
 function showNextArticle() {
-  buttonClickSound.play().catch(error => {
-    console.error("Error playing sound:", error);
-  });
-
   if (currentIndex < newsData.length - 1) {
     currentIndex++;
   } else {
@@ -107,10 +116,6 @@ function showNextArticle() {
 }
 
 function showPreviousArticle() {
-  buttonClickSound.play().catch(error => {
-    console.error("Error playing sound:", error);
-  });
-
   if (currentIndex > 0) {
     currentIndex--;
   } else {
