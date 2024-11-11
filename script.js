@@ -1,25 +1,35 @@
 const buttonClickSound = new Audio('https://raw.githubusercontent.com/jethermasidong/api-call/refs/heads/main/soundeffect/papersoundeffect.mp3');
 
 document.getElementById("fetchNewsBtn").addEventListener("click", function() {
-  buttonClickSound.play().catch(error => {
-    console.error("Error playing sound:", error);
-  });
-  fetchNews();
+  playSoundWithLoading(() => fetchNews());
 });
 
 document.getElementById("nextBtn").addEventListener("click", function() {
-  buttonClickSound.play().catch(error => {
-    console.error("Error playing sound:", error);
-  });
-  showNextArticle();
+  playSoundWithLoading(() => showNextArticle());
 });
 
 document.getElementById("prevBtn").addEventListener("click", function() {
+  playSoundWithLoading(() => showPreviousArticle());
+});
+
+function playSoundWithLoading(callback) {
+  // Show the loading text
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("newsContainer").style.display = "none"; // Hide news
+
   buttonClickSound.play().catch(error => {
     console.error("Error playing sound:", error);
   });
-  showPreviousArticle();
-});
+
+  buttonClickSound.onended = () => {
+    // Hide the loading text and show the news after the sound ends
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("newsContainer").style.display = "block";
+    
+    // Call the callback to fetch or display the article
+    callback();
+  };
+}
 
 let currentIndex = 0;
 let newsData = [];
